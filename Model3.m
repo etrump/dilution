@@ -26,10 +26,6 @@ end
 %Load current values of integration variables -----------
 for i=1:n
     Cv(i)=Y(i);  
-
-%    for j=1:Pop
-%        Cp(j,i)=Y(j*n+i);
-%    end
     if Cv(i)<=0 || Cv(i)~=Cv(i) 
         Cv(i) = 0; % Borrowed from Evaporation mfile
     end
@@ -90,13 +86,13 @@ end
 %
 FracSulfSusp = M_Sulf(1)/(M_Sulf(1)+M_SOA(1));
 
-%for j=1:Pop
-   % PopString = int2str(j);
-    %eval(['modelAtm.Pop' PopString '.Dp = Dp(j);']) % do this need to be
+for j=1:Pop
+    PopString = int2str(j);
+    eval(['modelAtm.Pop' PopString '.Dp = Dp(j);']) % do this need to be
     %done???
    % eval(['NumConc(j) = modelAtm.Pop' PopString '.NumConc0;']); %do this
    % explicitly for each population to save time
-%end
+end
 
 
 %Load associated properties ----------
@@ -107,17 +103,6 @@ for j=1:Pop
     MW = (M_Sulf(j)+M_SOA(j))/(M_Sulf(j)/modelAtm.Sulf.MW+M_SOA(j)/modelAtm.SOA.MW);
 end
 
-%for i=1:n % is this used???
-  
-%   XCp(1,i) = Cp(1,i)/sum(Cp(1,:));
-%   XCv(i) = Cv(i)/sum(Cv);
-%   if sum(Cp(1,:)) == 0
-%       XCp(1,i) = 1;
-%       XCv(i) = 1;
-%   end
-   
-%end
-
 t
 
 %Calculate condensation sinks------------
@@ -126,11 +111,6 @@ for j=1:Pop
     ParticleKn = 2*modelAtm.SOA.lambda/Dp(j);
     BetaP = FuchsC(ParticleKn);
     CondSinkTot(j) = alpha*NumConc(j)*2*pi*Dp(j)*modelAtm.SOA.Diff*BetaP;
-   % CondSinkTot(j) = UpdateBackgroundCS(TotalMass(j),Dp(j),rho, j);
-
-   % PopString = int2str(j);
-  %  eval(['ParticleNum = modelAtm.Pop' PopString '.NumConc0;']) %No deposition or particle loss
-    %ParticleNum = 1; %#/m3
     ParticleNum = NumConc(j);
     CondSinkP(j) = CondSinkTot(j)/ParticleNum;
 end

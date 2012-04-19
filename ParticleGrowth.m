@@ -8,9 +8,7 @@ KelvinYN = modelAtm.KelvinYN;
 CStarBasis = modelAtm.CStarBasis;
 alpha = modelAtm.SOA.alphaProd;
 
-%CurPop = int2str(j);
 
-%eval(['Dp = modelAtm.Pop' CurPop '.Dp;'])
 UptakeFact = modelAtm.UptakeFact;
 %UptakeFact = 1; % NO MASS XFER LIMITATIONS
     if KelvinYN==1
