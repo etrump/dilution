@@ -45,7 +45,7 @@ LoadAtmos;
 LoadSOAProps;
 %modelAtm.Injection = 1287; %120307.... 120202
 modelAtm.Injection = 429; %120326... 120409
-%modelAtm.V_small = 2;
+modelAtm.V_small = 2;
 [Caer_part, Cvap_part] = Partition(modelAtm.Injection/modelAtm.V_small)
 
 for i = 1:length(Caer_part)

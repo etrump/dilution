@@ -7,7 +7,7 @@ global Tagg DpT modelAtm DpT2 CpT VFR3
 
 Tagg_hr = Tagg/3600;
 DpT_nm = DpT;
-PopIndy = ceil(modelAtm.Pop/2);
+PopIndy = ceil(modelAtm.Pop/2)-1;
 
 %for i = 1:length(CpT(:,1))
     
@@ -61,7 +61,7 @@ figure2 = figure('InvertHardcopy','off','Color',[1 1 1]);
 axes1 = axes('Parent',figure2,'LineWidth',3,'FontSize',16);
 box('on');
 hold('all');
-axis([0 3.5 0 1]);
+axis([0 7 0 1]);
 
 plot2 = plot(Tagg_hr,VFR4,'LineWidth',3)
 

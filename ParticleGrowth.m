@@ -35,7 +35,7 @@ for i=1:n
     Phi(i)=UptakeFact*CondSink*(Cv(i)-Kelvin*MolFrac(i)*CStarBasis(i)); % calculte flux assuming no other limitations [=]ug/m3-s    
 %    Phi(i) = -Kelvin*MolFrac(i)*CStarBasis(i)*UptakeFact*CondSink; % evap into vaccuum
 %   Phi(i) = QPhi(i);
-   if Dp*1e9 < 10
+   if Dp*1e9 < 5
        Phi(i) = 0;
    end
    if Cp(i) < 1e-13

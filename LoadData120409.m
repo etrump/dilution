@@ -279,7 +279,7 @@ logSigma = coeffval(1)
 %logMode = 2.447 %Small bag, t0
 logMode = coeffval(2)
 
-Dp_0m = 50; %[=]nm, start at 0.010 um
+Dp_0m = 30; %[=]nm, start at 0.010 um
 Dp_fm = 550;   % match SMPS
 
 logDp_0m = log10(Dp_0m);
@@ -307,8 +307,8 @@ figure(100)
 semilogx(Dpm,n_N)
 
 %TotalPop = 20;
-xn = 550;
-x0 = 50;
+xn = Dp_fm;
+x0 = Dp_0m;
 delh = (log10(xn)-log10(x0))/TotalPop;
 crap = 1:TotalPop;
 Bin_split = 10.^(delh*crap + log10(x0));
