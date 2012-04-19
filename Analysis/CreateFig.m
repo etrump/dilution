@@ -58,13 +58,22 @@ for i = 1:length(CpT(:,1))
   VFR4(i,1) = pi()/6*DpT_nm(i,PopIndy)^3*1/V_0;
 end
 
+totalVol = zeros(length(Tagg));
+
+for i = 1:length(Tagg)
+for j = 1:modelAtm.Pop
+   totalVol(i) = totalVol(i) + TotalSusp(j)*pi()/6*DpT_nm(i,j)^3; 
+end
+    totalVFR(i) = totalVol(i)/totalVol(1);
+end
+
 figure2 = figure('InvertHardcopy','off','Color',[1 1 1]);
 axes1 = axes('Parent',figure2,'LineWidth',3,'FontSize',16);
 box('on');
 hold('all');
 axis([0 7 0 1]);
 
-plot2 = plot(Tagg_hr,VFR4,'LineWidth',3)
+plot2 = plot(Tagg_hr,totalVFR,'LineWidth',3)
 
 set(plot2(1),'DisplayName','Background','Color',[0 0.6 0]);
 
@@ -90,3 +99,5 @@ set(gcf,'Color','none');
 % Make sure there is a place for figures and save as a pdf
 if ~exist('./figs','dir'); mkdir('./figs'); end;
 saveas(gcf,['./figs/VFR.pdf'],'pdf'); 
+
+VFRdata120326
