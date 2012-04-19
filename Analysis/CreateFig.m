@@ -8,6 +8,7 @@ global Tagg DpT modelAtm DpT2 CpT VFR3
 Tagg_hr = Tagg/3600;
 DpT_nm = DpT;
 PopIndy = ceil(modelAtm.Pop/2)-1;
+PopIndy = 6;
 
 %for i = 1:length(CpT(:,1))
     

@@ -45,7 +45,7 @@ LoadAtmos;
 LoadSOAProps;
 %modelAtm.Injection = 1287; %120307.... 120202
 modelAtm.Injection = 429; %120326... 120409
-modelAtm.V_small = 2;
+%modelAtm.V_small = 2;
 [Caer_part, Cvap_part] = Partition(modelAtm.Injection/modelAtm.V_small)
 
 for i = 1:length(Caer_part)
@@ -65,14 +65,14 @@ LoadSulfProps(SulfMassConc);
 %TotalPop = 20;
 
 DF = 150;
-DF = 10; %120409
+%DF = 10; %120409
 
 modelAtm.DF = DF;
 
 %[Dp_bin_vect, N_tot_bin] = LoadData120202(TotalPop);
 %[Dp_bin_vect, N_tot_bin] = LoadData120307(TotalPop);
-%[Dp_bin_vect, N_tot_bin] = LoadData120326(TotalPop);
-[Dp_bin_vect, N_tot_bin] = LoadData120409(TotalPop);
+[Dp_bin_vect, N_tot_bin] = LoadData120326(TotalPop);
+%[Dp_bin_vect, N_tot_bin] = LoadData120409(TotalPop);
 for i = 1:length(Dp_bin_vect)
 Mass_bin_vect(i) = N_tot_bin(i)*pi/6*modelAtm.SOA.rho*(Dp_bin_vect(i)*1e-9)^3*1e6*1/DF;
 end
