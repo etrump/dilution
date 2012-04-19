@@ -15,7 +15,7 @@ PopIndy = ceil(modelAtm.Pop/2)-1;
 %end
 
 %plot1 = plot(Tagg_hr,DpT_nm(:,14),'LineWidth',3)
-plot1 = plot(Tagg_hr,DpT_nm(:,PopIndy),'LineWidth',3)
+plot1 = plot(Tagg_hr,DpT_nm(:,PopIndy-1),Tagg_hr,DpT_nm(:,PopIndy),Tagg_hr,DpT_nm(:,PopIndy+1),'LineWidth',3)
 
 set(plot1(1),'DisplayName','Background','Color',[0 0.6 0]);
 
@@ -48,13 +48,25 @@ saveas(gcf,['./figs/Diam.pdf'],'pdf');
 
 
 %V_0 = pi()/6*DpT_nm(1,14)^3;
+totalVol = zeros(length(Tagg));
+
+for i = 1:length(Tagg)
+for j = 1:modelAtm.Pop
+   totalVol(i) = totalVol(i) + TotalSusp(j)*pi()/6*DpT_nm(i,j)^3; 
+end
+    totalVFR(i) = totalVol(i)/totalVol(1);
+end
 
 V_0 = pi()/6*DpT_nm(1,PopIndy)^3;
+V_02 = pi()/6*DpT_nm(1,PopIndy-1)^3;
+V_03 = pi()/6*DpT_nm(1,PopIndy+1)^3;
 
 for i = 1:length(CpT(:,1))
     
   %VFR4(i,1) = pi()/6*DpT_nm(i,14)^3*1/V_0;
   VFR4(i,1) = pi()/6*DpT_nm(i,PopIndy)^3*1/V_0;
+  VFR4(i,2) = pi()/6*DpT_nm(i,PopIndy-1)^3*1/V_02;
+  VFR4(i,3) = pi()/6*DpT_nm(i,PopIndy+1)^3*1/V_03;
 end
 
 figure2 = figure('InvertHardcopy','off','Color',[1 1 1]);
@@ -63,7 +75,8 @@ box('on');
 hold('all');
 axis([0 7 0 1]);
 
-plot2 = plot(Tagg_hr,VFR4,'LineWidth',3)
+%plot2 = plot(Tagg_hr,VFR4(:,2),Tagg_hr,VFR4(:,1),Tagg_hr,VFR4(:,3),'LineWidth',3)
+plot2 = plot(Tagg_hr,totalVFR,'LineWidth',3)
 
 set(plot2(1),'DisplayName','Background','Color',[0 0.6 0]);
 
