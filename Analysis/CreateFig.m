@@ -89,3 +89,5 @@ set(gcf,'Color','none');
 % Make sure there is a place for figures and save as a pdf
 if ~exist('./figs','dir'); mkdir('./figs'); end;
 saveas(gcf,['./figs/VFR.pdf'],'pdf'); 
+
+VFRdata120409
